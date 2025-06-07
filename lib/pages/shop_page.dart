@@ -1,8 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mad_proj/components/my_drawer.dart';
+import 'package:mad_proj/pages/accelerometer_activity_page.dart';
 import 'package:mad_proj/pages/connectivity_page.dart';
-import 'package:mad_proj/pages/settings_page.dart';
+import 'package:mad_proj/pages/location_page.dart';
 import 'package:mad_proj/pages/shop_page_content.dart';
 
 class ShopPage extends StatefulWidget {
@@ -19,7 +20,8 @@ class _ShopPageState extends State<ShopPage> {
   final List<Widget> _pages = [
     ShopPageContent(),
     ConnectivityPage(),
-    SettingsPage(),
+    ActivityDetectionPage(),
+    LocationPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -44,8 +46,18 @@ class _ShopPageState extends State<ShopPage> {
             Icons.storefront_rounded,
             color: Theme.of(context).colorScheme.tertiary,
           ),
-          Icon(Icons.sensors, color: Theme.of(context).colorScheme.tertiary),
-          Icon(Icons.settings, color: Theme.of(context).colorScheme.tertiary),
+          Icon(
+            Icons.info_outline,
+            color: Theme.of(context).colorScheme.tertiary,
+          ),
+          Icon(
+            Icons.directions_run,
+            color: Theme.of(context).colorScheme.tertiary,
+          ),
+          Icon(
+            Icons.navigation_rounded,
+            color: Theme.of(context).colorScheme.tertiary,
+          ),
         ],
         onTap: _onItemTapped,
       ),
@@ -54,8 +66,10 @@ class _ShopPageState extends State<ShopPage> {
           _selectedIndex == 0
               ? "Shop"
               : _selectedIndex == 1
-              ? "    Network Connectivity"
-              : "    Settings",
+              ? "    Device Utilities"
+              : _selectedIndex == 2
+              ? "    Accelerometer Motion Sensor"
+              : "    Location Tracking",
         ),
         backgroundColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
