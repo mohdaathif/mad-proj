@@ -12,14 +12,14 @@ class ActivityDetectionPage extends StatefulWidget {
 
 class _ActivityDetectionPageState extends State<ActivityDetectionPage> {
   String motionType = 'Checking...';
-  StreamSubscription? accelSub;
+  StreamSubscription? accelerationInfo;
   AccelerometerEvent? reading;
-  double diffThreshold = 1.5;
+  double acceptedDiff = 1.5;
   int? lastTime;
 
   void startListening() {
     // ignore: deprecated_member_use
-    accelSub = accelerometerEvents.listen((event) {
+    accelerationInfo = accelerometerEvents.listen((event) {
       final now = DateTime.now().millisecondsSinceEpoch;
       if (lastTime == null || now - lastTime! > 150) {
         lastTime = now;
@@ -29,7 +29,7 @@ class _ActivityDetectionPageState extends State<ActivityDetectionPage> {
         );
         double gravityDiff = (total - 9.8).abs();
 
-        if (gravityDiff > diffThreshold) {
+        if (gravityDiff > acceptedDiff) {
           if (motionType != 'Moving') {
             setState(() {
               motionType = 'Moving';
@@ -47,7 +47,7 @@ class _ActivityDetectionPageState extends State<ActivityDetectionPage> {
   }
 
   void stopAndReset() {
-    accelSub?.cancel();
+    accelerationInfo?.cancel();
     setState(() {
       motionType = 'Stopped';
     });
@@ -56,7 +56,7 @@ class _ActivityDetectionPageState extends State<ActivityDetectionPage> {
 
   @override
   void dispose() {
-    accelSub?.cancel();
+    accelerationInfo?.cancel();
     super.dispose();
   }
 

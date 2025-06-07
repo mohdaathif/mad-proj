@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         email: email,
         password: password,
       );
-      Navigator.pushNamed(context, '/home_page');
+      Navigator.pushReplacementNamed(context, '/home_page');
     } on FirebaseAuthException catch (e) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         final msg =
