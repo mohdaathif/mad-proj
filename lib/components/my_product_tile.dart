@@ -92,7 +92,7 @@ class MyProductTile extends StatelessWidget {
 
                   // product description
                   Text(
-                    product.description,
+                    product.cardDescription,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),

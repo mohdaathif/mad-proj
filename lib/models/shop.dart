@@ -9,28 +9,36 @@ class Shop extends ChangeNotifier {
     Product(
       name: "Adidas Ultra Boost 5",
       price: 85.0,
-      description: "Item Description",
+      cardDescription: "Sports shoe from Adidas",
+      longDescription:
+          "Comfortable, lightweight sports shoe from Adidas combining comfort and sportiness into a single product. For real runners. (Men's category)",
       imagePath: 'assets/adidasultraboost5.jpg',
     ),
     // product 2
     Product(
       name: "Dumbbells",
       price: 20.0,
-      description: "Item Description",
+      cardDescription: "Couple of dumbbells",
+      longDescription:
+          "All encompassing dumbbells to suit on-the-move needs. Sold in 1kg, 2kg, 5kg, 10kg sets. (Unisex category)",
       imagePath: 'assets/dumbbells.jpg',
     ),
     // product 3
     Product(
       name: "Life F5 Treadmill",
       price: 1555.0,
-      description: "Item Description",
+      cardDescription: "Indoor medium-sized treadmill",
+      longDescription:
+          "Foldable, portable treadmill from Life F5 2022 collection. Can reach speeds of 20 mph, efficient electricity consumption. (Unisex category)",
       imagePath: 'assets/lifefitnessf5.jpg',
     ),
     // product 4
     Product(
       name: "Skipping Rope",
       price: 25.0,
-      description: "Item Description",
+      cardDescription: "Sports skipping rope",
+      longDescription:
+          "For intense workouts, made for atheletes. Special lightweight material used in manufacture lends unique and sleek feel to skipping experience, with minimal tripping. (Unisex category)",
       imagePath: 'assets/skippingrope.jpg',
     ),
   ];
