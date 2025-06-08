@@ -30,12 +30,20 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     try {
-      // Try signing in
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      Navigator.pushReplacementNamed(context, '/home_page');
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      if (userCredential.user != null && userCredential.user!.emailVerified) {
+        Navigator.pushReplacementNamed(context, '/home_page');
+      } else {
+        await FirebaseAuth.instance.signOut();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Please verify your email before logging in.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
     } on FirebaseAuthException catch (e) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         final msg =

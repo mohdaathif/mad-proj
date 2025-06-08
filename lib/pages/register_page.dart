@@ -53,7 +53,14 @@ class _RegisterPageState extends State<RegisterPage> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
-        Navigator.pushReplacementNamed(context, '/home_page');
+        await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("We have sent a verification email to your inbox."),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        await FirebaseAuth.instance.signOut();
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
